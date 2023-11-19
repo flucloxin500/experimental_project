@@ -1,61 +1,158 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
 
-/// Table Calender integration
+void main() => runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+    )
+);
 
-void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: MyApp(),
-  ));
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  DateTime today = DateTime.now();
-
-  void _onDaySelected(DateTime day, DateTime focusedDay) {
-    setState(() {
-      today = day;
-    });
-  }
-
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Welcome to Table Calender')),
-      body: content(),
-    );
-  }
-
-  Widget content() {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          Text('Today = ' + today.toString().split(" ")[0]),
-          Container(
-            child: TableCalendar(
-              locale: 'en_US',
-              rowHeight: 43,
-              headerStyle:
-                  HeaderStyle(formatButtonVisible: false, titleCentered: true),
-              availableGestures: AvailableGestures.all,
-              selectedDayPredicate: (day) => isSameDay(day, today),
-              focusedDay: today,
-              firstDay: DateTime.utc(2002, 01, 04),
-              lastDay: DateTime.utc(2035, 03, 14),
-              onDaySelected: _onDaySelected,
+      body: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                colors: [
+                  Colors.orange.shade900,
+                  Colors.orange.shade800,
+                  Colors.orange.shade400
+                ]
+            )
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(height: 80,),
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  FadeInUp(duration: Duration(milliseconds: 1000), child: Text("Login", style: TextStyle(color: Colors.white, fontSize: 40),)),
+                  SizedBox(height: 10,),
+                  FadeInUp(duration: Duration(milliseconds: 1300), child: Text("Welcome Back", style: TextStyle(color: Colors.white, fontSize: 18),)),
+                ],
+              ),
             ),
-          ),
-        ],
+            SizedBox(height: 20),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(60), topRight: Radius.circular(60))
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(30),
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 60,),
+                      FadeInUp(duration: Duration(milliseconds: 1400), child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [BoxShadow(
+                                color: Color.fromRGBO(225, 95, 27, .3),
+                                blurRadius: 20,
+                                offset: Offset(0, 10)
+                            )]
+                        ),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  border: Border(bottom: BorderSide(color: Colors.grey.shade200))
+                              ),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                    hintText: "Email or Phone number",
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    border: InputBorder.none
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  border: Border(bottom: BorderSide(color: Colors.grey.shade200))
+                              ),
+                              child: TextField(
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    hintText: "Password",
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    border: InputBorder.none
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )),
+                      SizedBox(height: 40,),
+                      FadeInUp(duration: Duration(milliseconds: 1500), child: Text("Forgot Password?", style: TextStyle(color: Colors.grey),)),
+                      SizedBox(height: 40,),
+                      FadeInUp(duration: Duration(milliseconds: 1600), child: MaterialButton(
+                        onPressed: () {},
+                        height: 50,
+                        // margin: EdgeInsets.symmetric(horizontal: 50),
+                        color: Colors.orange[900],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+
+                        ),
+                        // decoration: BoxDecoration(
+                        // ),
+                        child: Center(
+                          child: Text("Login", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                        ),
+                      )),
+                      SizedBox(height: 50,),
+                      FadeInUp(duration: Duration(milliseconds: 1700), child: Text("Continue with social media", style: TextStyle(color: Colors.grey),)),
+                      SizedBox(height: 30,),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: FadeInUp(duration: Duration(milliseconds: 1800), child: MaterialButton(
+                              onPressed: (){},
+                              height: 50,
+                              color: Colors.blue,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Center(
+                                child: Text("Facebook", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                              ),
+                            )),
+                          ),
+                          SizedBox(width: 30,),
+                          Expanded(
+                            child: FadeInUp(duration: Duration(milliseconds: 1900), child: MaterialButton(
+                              onPressed: () {},
+                              height: 50,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50),
+
+                              ),
+                              color: Colors.black,
+                              child: Center(
+                                child: Text("Github", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                              ),
+                            )),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
